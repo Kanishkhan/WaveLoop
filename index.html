@@ -18,6 +18,7 @@
         <a href="#why">Why this</a>
         <a href="#experience">Experience</a>
         <a href="#growth">Growth engine</a>
+        <a href="#leaderboard">Leaderboard</a>
         <a href="#myHub" id="hubNav" hidden>My WaveLoop</a>
         <a href="#faq">FAQ</a>
         <a class="nav-demo" href="admin.html">Command center</a>
@@ -85,7 +86,7 @@
       <div class="container">
         <div class="section-heading split-heading">
           <div><span class="section-kicker">THE STUDENT PROBLEM</span><h2>You don't need another AI course. You need a result.</h2></div>
-          <p>The campaign targets placement-season final-year students who know the basics but haven't shipped a project they can confidently explain. The offer is the outcome: a live AI project, a GitHub link and a resume story. memcite</p>
+          <p>The campaign targets placement-season final-year students who know the basics but haven't shipped a project they can confidently explain. The offer is the outcome: a live AI project, a GitHub link and a resume story.</p>
         </div>
         <div class="problem-grid">
           <article class="problem-card"><div class="problem-number">01</div><h3>“Tell me about a project you built.”</h3><p>The question becomes uncomfortable when the project is copied, half-finished or hard to explain.</p><span class="tag">Interview pressure</span></article>
@@ -140,7 +141,7 @@
         </div>
         <div class="hub-grid">
           <div class="hub-card hub-main"><div class="hub-top"><span class="section-kicker">PERSONAL LINK</span><span class="hub-live">ACTIVE</span></div><div class="hub-link-row"><code id="hubLink">—</code><button class="icon-btn" id="hubCopy">⧉</button></div><div class="hub-actions"><button class="btn btn-primary" id="hubWhatsApp">Share on WhatsApp</button><button class="btn btn-secondary" id="hubCopyMsg">Copy message</button></div></div>
-          <div class="hub-card"><span class="section-kicker">REFERRALS</span><div class="hub-number" id="hubCount">0</div><span class="hub-muted">verified classmates</span><div class="hub-progress"><span id="hubBar"></span></div><div class="hub-milestones"><span class="done">1</span><span>3</span><span>5</span></div></div>
+          <div class="hub-card"><span class="section-kicker">REFERRALS</span><div class="hub-number"><span id="hubCount">0</span><small> / 5</small></div><span class="hub-muted" id="hubMuted">verified final-year classmates</span><div class="hub-progress"><span id="hubBar"></span></div><div class="hub-milestones" id="hubMilestones"><span>1</span><span>3</span><span>5</span></div></div>
           <div class="hub-card"><span class="section-kicker">NEXT MILESTONE</span><h3 id="hubNext">1 referral</h3><p id="hubReward">Share your link once to start your reward ladder.</p><button class="btn btn-secondary" id="hubRegisterAgain">View referral flow</button></div>
         </div>
       </div>
@@ -150,7 +151,7 @@
       <div class="container">
         <div class="section-heading split-heading">
           <div><span class="section-kicker">WORKING ASSET</span><h2>Every registration is designed to create the next registration.</h2></div>
-          <p>WaveLoop combines registration, referral attribution, reward progress, leaderboard motivation and an operator view into one campaign loop. memcite</p>
+          <p>WaveLoop combines registration, referral attribution, reward progress, leaderboard motivation and an operator view into one campaign loop.</p>
         </div>
         <div class="growth-loop">
           <div class="loop-card active"><div class="loop-icon">01</div><h3>Register</h3><p>30-second form. Source tagged automatically.</p></div>
@@ -168,10 +169,10 @@
       <div class="container command-grid">
         <div class="command-copy"><span class="section-kicker light">OPERATOR VIEW</span><h2>A growth engine you can inspect, not just describe.</h2><p class="dark-copy">The command center shows registration volume, referral activity, channel mix, campaign replay and class-group copy generation.</p><div class="command-actions"><a class="btn btn-light" href="admin.html">Open command center →</a><button class="btn btn-outline-light" data-open-register>Try the student flow</button></div></div>
         <div class="mini-dashboard">
-          <div class="dash-top"><span>WAVELOOP / COMMAND</span><span class="live-pill">DEMO DATA</span></div>
-          <div class="dash-kpis"><div><span>Qualified</span><b>500</b><small>target</small></div><div><span>Referral share</span><b>24%</b><small>plan mix</small></div><div><span>Budget</span><b>₹2K</b><small>simulation</small></div></div>
-          <div class="dash-bars"><i style="height:82%"></i><i style="height:58%"></i><i style="height:66%"></i><i style="height:48%"></i><i style="height:29%"></i><i style="height:91%"></i><i style="height:73%"></i></div>
-          <div class="dash-legend"><span><i></i> planned daily qualified registrations</span><span>model output</span></div>
+          <div class="dash-top"><span>WAVELOOP / COMMAND</span><span class="live-pill" id="dashLabel">LOADING</span></div>
+          <div class="dash-kpis"><div><span>Qualified</span><b id="dashQualified">—</b><small>of 500 target</small></div><div><span>Referral share</span><b id="dashReferral">—</b><small>of qualified</small></div><div><span>Budget</span><b>₹2K</b><small>simulation</small></div></div>
+          <div class="dash-bars" id="dashBars"><i style="height:6%"></i><i style="height:6%"></i><i style="height:6%"></i><i style="height:6%"></i><i style="height:6%"></i><i style="height:6%"></i><i style="height:6%"></i></div>
+          <div class="dash-legend"><span><i></i> daily qualified registrations</span><span id="dashLegendNote">last 7 days</span></div>
         </div>
       </div>
     </section>
@@ -195,10 +196,44 @@
           <span class="section-kicker">REFERRAL LADDER</span><h2>Make sharing feel like progress.</h2><p class="section-lead">The reward flow turns a static registration into a small, visible game: invite one, then three, then five verified classmates.</p>
           <button class="btn btn-primary" data-open-register>Unlock my referral link →</button>
         </div>
-        <div class="reward-ladder">
-          <div class="reward-step unlocked"><span>1</span><div><b>First invite</b><small>Share unlocked</small></div><strong>✓</strong></div>
-          <div class="reward-step"><span>3</span><div><b>Momentum</b><small>Next reward unlocked</small></div><strong>○</strong></div>
-          <div class="reward-step"><span>5</span><div><b>Top referrer tier</b><small>Final milestone</small></div><strong>○</strong></div>
+        <div class="reward-ladder" id="rewardLadder">
+          <div class="reward-step" data-at="1"><span>1</span><div><b>First invite</b><small>Share unlocked</small></div><strong>○</strong></div>
+          <div class="reward-step" data-at="3"><span>3</span><div><b>Momentum</b><small>Next reward unlocked</small></div><strong>○</strong></div>
+          <div class="reward-step" data-at="5"><span>5</span><div><b>Top referrer tier</b><small>Final milestone</small></div><strong>○</strong></div>
+          <p class="ladder-note" id="ladderNote">Register to start your own ladder. Only verified final-year (2027) classmates count.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="leaderboard" class="section board-section">
+      <div class="container">
+        <div class="section-heading split-heading">
+          <div><span class="section-kicker">LIVE LEADERBOARD</span><h2>Campus ambassadors, ranked by verified final-years.</h2></div>
+          <p>Only 2027-batch sign-ups count, so off-target registrations can't move the board. It refreshes every 12 seconds.</p>
+        </div>
+        <div class="board-grid">
+          <div class="board-card">
+            <div class="board-head"><span class="section-kicker">TOP AMBASSADORS</span><span class="board-status" id="boardStatus">Loading…</span></div>
+            <div class="leader-list" id="publicLeaderboard"></div>
+            <p class="board-foot" id="boardFoot" hidden></p>
+          </div>
+          <div class="board-card amb-card">
+            <span class="section-kicker">OPEN SIGN-UP</span>
+            <h3>Become a campus ambassador</h3>
+            <p>Get a personal link for your class groups. Every verified final-year sign-up through it moves you up the board.</p>
+            <form id="ambassadorForm" class="form-grid amb-form" novalidate>
+              <label>Full name<input name="name" required maxlength="80" placeholder="Your name" autocomplete="name" /></label>
+              <label>Email<input name="email" type="email" required maxlength="254" placeholder="you@example.com" autocomplete="email" /></label>
+              <label>College<input name="college" required maxlength="120" placeholder="College / University" /></label>
+              <div class="form-error" id="ambError" hidden></div>
+              <button class="btn btn-primary" type="submit">Get my ambassador link →</button>
+            </form>
+            <div class="amb-result" id="ambResult" hidden>
+              <div class="ref-box"><span>Your ambassador link</span><code id="ambLink">-</code><button class="icon-btn" id="ambCopy" type="button" title="Copy">⧉</button></div>
+              <div class="amb-stats"><div><b id="ambVerified">0</b><span>verified final-years</span></div><div><b id="ambRank">—</b><span>current rank</span></div></div>
+              <div class="share-actions"><button class="btn btn-primary" id="ambWhatsApp" type="button">Share on WhatsApp →</button><button class="btn btn-secondary" id="ambReset" type="button">Not you?</button></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -208,7 +243,7 @@
         <span class="section-kicker">FAQ</span><h2>Questions before you register.</h2>
         <details open><summary>Who is this for?</summary><p>Final-year engineering students, especially CSE / IT / ECE students preparing for placements and looking to ship a project they can explain.</p></details>
         <details><summary>Do I need advanced AI experience?</summary><p>No. The campaign is designed around basic technical familiarity and a first practical build.</p></details>
-        <details><summary>What happens after I register?</summary><p>You receive your registration confirmation and personal referral link. You can share it with classmates and track referral progress in the demo hub.</p></details>
+        <details><summary>What happens after I register?</summary><p>You receive your registration confirmation and personal referral link. You can share it with classmates and track verified referral progress in your hub on this page.</p></details>
         <details><summary>Is the 500-registration number real?</summary><p>No. This is a challenge simulation. The 500 target and the campaign replay are planning assumptions, not actual student registrations.</p></details>
       </div>
     </section>
@@ -221,29 +256,31 @@
   <footer class="footer"><div class="container footer-inner"><div class="brand"><span class="brand-mark">W</span><span>WaveLoop</span></div><div><span>Workshop campaign prototype · Simulation only</span><a href="admin.html">Command center</a></div></div></footer>
 
   <dialog id="registerDialog" class="modal"><form method="dialog" class="modal-card" id="registerForm">
-    <button class="modal-close" value="close" aria-label="Close">×</button>
+    <button type="button" class="modal-close" id="closeRegister" aria-label="Close">×</button>
     <div class="eyebrow">30-second registration</div><h2>Save your seat.</h2><p class="modal-sub">A focused hour to build an AI project you can explain.</p>
     <div class="form-grid">
       <label>Full name<input name="name" required placeholder="Your name" /></label>
       <label>Email<input name="email" type="email" required placeholder="you@example.com" /></label>
       <label>College<input name="college" required placeholder="College / University" /></label>
       <label>Branch<select name="branch" required><option value="">Select</option><option>CSE</option><option>IT</option><option>ECE</option><option>Other</option></select></label>
-      <label>Graduation year<select name="year" required><option value="">Select</option><option>2027</option><option>2026</option><option>Other</option></select></label>
+      <label>Graduation year<select name="graduation_year" required><option value="">Select</option><option>2027</option><option>2026</option><option>Other</option></select></label>
       <label>Primary goal<select name="goal"><option>Build a first AI project</option><option>Improve my resume</option><option>Prepare for interviews</option><option>Learn by shipping</option></select></label>
-      <label>How did you hear about this?<select name="source"><option>Direct</option><option>Campus ambassador</option><option>Referral</option><option>Telegram / community</option><option>LinkedIn / Instagram</option></select></label>
-      <label>Referral code <span class="optional">optional</span><input name="referredBy" id="referredByInput" placeholder="e.g. PRANA-9K2Q" /></label>
+      <label>How did you hear about this?<select name="referral_source"><option>Direct</option><option>Campus ambassador</option><option>Referral</option><option>Telegram / community</option><option>LinkedIn / Instagram</option></select></label>
+      <label>Referral code <span class="optional">optional</span><input name="referred_by_code" id="referredByInput" placeholder="e.g. PRANA-9K2Q1" maxlength="24" autocapitalize="characters" /></label>
     </div>
-    <div class="modal-note"><span>✓</span><span>Your source and referral are tagged in the demo so the growth loop can be measured.</span></div>
-    <div class="modal-actions"><button type="button" class="btn btn-secondary" id="cancelRegister">Cancel</button><button type="submit" class="btn btn-primary">Reserve my seat →</button></div>
+    <div class="modal-note"><span>✓</span><span id="registerNote">Your source and referral code are recorded so the growth loop can be measured. Simulation only — no students are being contacted.</span></div>
+    <div class="form-error" id="registerError" hidden></div>
+    <div class="modal-actions"><button type="button" class="btn btn-secondary" id="cancelRegister">Cancel</button><button type="submit" class="btn btn-primary" id="registerSubmit">Reserve my seat →</button></div>
   </form></dialog>
 
   <dialog id="successDialog" class="modal"><div class="modal-card success-card">
-    <button class="modal-close" id="closeSuccess" aria-label="Close">×</button><div class="success-icon">✓</div><div class="eyebrow">You're in</div><h2>Seat reserved. Now start the loop.</h2><p>Share your personal link with classmates. Your progress unlocks at 1, 3 and 5 verified referrals.</p>
+    <button class="modal-close" id="closeSuccess" aria-label="Close">×</button><div class="success-icon">✓</div><div class="eyebrow" id="successEyebrow">You're in</div><h2>Seat reserved. Now start the loop.</h2><p>Share your personal link with classmates. Your progress unlocks at 1, 3 and 5 verified referrals.</p>
+    <p class="referral-status" id="referralStatus" hidden></p>
     <div class="ref-box"><span>Your personal link</span><code id="refLinkText">-</code><button id="copyRef" class="icon-btn" title="Copy">⧉</button></div>
     <div class="share-actions"><button class="btn btn-primary" id="shareWhatsApp">Share on WhatsApp →</button><button class="btn btn-secondary" id="copyShareText">Copy share message</button></div>
-    <div class="success-progress"><div class="progress-meta"><span>Referral progress</span><b id="successProgressText">0 / 5</b></div><div class="progress-track"><span id="successProgressBar"></span></div><div class="milestones"><span class="done">1</span><span>3</span><span>5</span></div></div>
+    <div class="success-progress"><div class="progress-meta"><span>Referral progress</span><b id="successProgressText">0 / 5</b></div><div class="progress-track"><span id="successProgressBar"></span></div><div class="milestones" id="successMilestones"><span>1</span><span>3</span><span>5</span></div></div>
     <div class="success-actions"><button class="btn btn-secondary" id="goToHub">Open my hub</button><button class="btn btn-secondary" id="closeSuccess2">Done</button></div>
-    <p class="tiny-note">Demo mode: data is stored locally in this prototype.</p>
+    <p class="tiny-note">Only verified final-year (2027) classmates count toward rewards. Challenge prototype · simulation only · no students are being contacted.</p>
   </div></dialog>
 
   <dialog id="fitDialog" class="modal"><div class="modal-card fit-modal">

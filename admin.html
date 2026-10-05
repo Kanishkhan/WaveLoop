@@ -1,11 +1,130 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#11162d"/><title>WaveLoop — Command Center</title><link rel="stylesheet" href="styles.css"/><link rel="stylesheet" href="admin.css"/></head><body class="admin-body"><div class="demo-banner"><span>SIMULATION MODE</span> Command center · model output only. No students were contacted.</div><header class="site-header"><div class="container nav"><a class="brand" href="index.html"><span class="brand-mark">W</span><span>WaveLoop</span></a><div class="admin-label">Campaign command center</div><a class="btn btn-secondary btn-small" href="index.html">Back to site</a></div></header>
-<main class="container admin-main">
-<section class="admin-hero"><div><span class="section-kicker">WORKING ASSET · OPERATOR VIEW</span><h1>See the loop. Tune the plan.</h1><p>Registration, attribution, referrals, campaign replay and message generation — in one demo console.</p></div><div class="badge">Demo data</div></section>
-<section class="admin-kpis"><div><span>Registrations</span><b id="kpiRegs">0</b><small>browser demo</small></div><div><span>Qualified 2027</span><b id="kpiQualified">0</b><small>verified</small></div><div><span>Referral events</span><b id="kpiReferrals">0</b><small>tracked</small></div><div><span>Planned qualified</span><b id="kpiSim">500</b><small>7-day model</small></div></section>
-<div class="admin-grid">
-<section class="panel span-2"><div class="panel-head"><div><span class="section-kicker">SIMULATION REPLAY</span><h2>7-day campaign trajectory</h2></div><div class="panel-actions"><button class="btn btn-secondary btn-small" id="animateSim">Animate</button><button class="btn btn-primary btn-small" id="runSim">Replay</button></div></div><div class="chart" id="simChart"></div><div class="sim-insight"><div><b>500</b><span>qualified target</span></div><div><b>≈600</b><span>total sign-ups modelled</span></div><div><b>₹2K</b><span>campaign budget</span></div><p>Model output from the planning assumptions — not real campaign results.</p></div></section>
-<section class="panel"><div class="panel-head"><div><span class="section-kicker">REFERRAL ENGINE</span><h2>Leaderboard</h2></div><span class="mini-note">10–15 sec refresh model</span></div><div class="leader-list" id="leaderboard"></div></section>
-<section class="panel"><div class="panel-head"><div><span class="section-kicker">ATTRIBUTION</span><h2>Channel mix</h2></div></div><div class="channel-list" id="channels"></div><div class="budget-call"><span>Day-4 decision cue</span><b id="budgetRecommendation">Collect more data</b></div></section>
-<section class="panel"><div class="panel-head"><div><span class="section-kicker">MESSAGE LAB</span><h2>Class-group copy</h2></div></div><div class="two-col"><label class="stack-label">Language<select id="lang"><option value="en">English</option><option value="ta">Tamil</option><option value="te">Telugu</option></select></label><label class="stack-label">Channel<select id="messageChannel"><option>Campus ambassador</option><option>Referral</option><option>Telegram / community</option><option>LinkedIn / Instagram</option></select></label></div><label class="stack-label">Tone<select id="messageTone"><option value="direct">Direct</option><option value="peer">Peer-to-peer</option><option value="urgency">24-hour urgency</option></select></label><button class="btn btn-primary full" id="generate">Generate message</button><textarea id="messageOut" rows="9" placeholder="Generated message will appear here..."></textarea><button class="btn btn-secondary full" id="copyMessage">Copy message</button></section>
-<section class="panel registrations span-2"><div class="panel-head"><div><span class="section-kicker">DATA LAYER</span><h2>Latest demo registrations</h2></div><div class="panel-actions"><button class="btn btn-secondary btn-small" id="exportCsv">Export CSV</button><button class="btn btn-secondary btn-small" id="seed">Seed demo data</button><button class="btn btn-secondary btn-small danger" id="clearDemo">Clear browser demo</button></div></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>College</th><th>Branch</th><th>Year</th><th>Source</th><th>Referral</th><th>Qualified</th></tr></thead><tbody id="regTable"></tbody></table></div></section>
-</div></main><footer class="footer"><div class="container footer-inner"><div class="brand"><span class="brand-mark">W</span><span>WaveLoop</span></div><div><span>Simulation only · No students contacted</span><a href="index.html">Back to landing page</a></div></div></footer><script src="admin.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#11162d" />
+  <meta name="robots" content="noindex" />
+  <title>WaveLoop — Command Center</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="admin-body locked">
+  <div class="demo-banner"><span>SIMULATION MODE</span> Command center · simulated figures are model output. No students were contacted.</div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="brand-mark">W</span><span>WaveLoop</span></a>
+      <div class="admin-label">Campaign command center</div>
+      <div class="nav-actions">
+        <button class="icon-btn ghost" id="themeToggle" aria-label="Toggle theme">◐</button>
+        <button class="btn btn-secondary btn-small" id="logout" hidden>Lock</button>
+        <a class="btn btn-secondary btn-small" href="index.html">Back to site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+    <section class="admin-hero">
+      <div><span class="section-kicker">WORKING ASSET · OPERATOR VIEW</span><h1>See the loop. Tune the plan.</h1><p>Registration, attribution, referrals, campaign replay and message generation — in one console, on live data.</p></div>
+      <div class="hero-side">
+        <div class="badge" id="dataBadge">Live data</div>
+        <div class="scope-switch" id="scopeSwitch" role="group" aria-label="Data shown">
+          <button data-scope="all" class="active">All</button><button data-scope="real">Real only</button><button data-scope="sim">Simulation</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="login-gate" id="loginGate">
+      <form class="panel login-card" id="loginForm">
+        <span class="section-kicker">OPERATOR ACCESS</span>
+        <h2>Enter the admin passcode</h2>
+        <p>The command center shows contact details, so it is behind a single passcode.</p>
+        <input type="password" name="passcode" id="passcode" placeholder="Passcode" autocomplete="current-password" required />
+        <div class="form-error" id="loginError" hidden></div>
+        <button class="btn btn-primary full" type="submit">Unlock command center →</button>
+      </form>
+    </section>
+
+    <div class="admin-content">
+      <div class="sim-banner" id="simBanner" hidden><span class="sim-flag">Simulation</span><span>These figures include simulated rows. Model output from our assumptions, not campaign results.</span></div>
+
+      <section class="admin-kpis">
+        <div><span>Registrations</span><b id="kpiRegs">—</b><small id="kpiRegsNote">all sign-ups</small></div>
+        <div><span>Qualified 2027</span><b id="kpiQualified">—</b><small id="kpiQualifiedNote">of 500 target</small><div class="kpi-track"><i id="kpiQualifiedBar"></i></div></div>
+        <div><span>Verified referrals</span><b id="kpiReferrals">—</b><small id="kpiReferralsNote">referral events</small></div>
+        <div><span>Ambassadors</span><b id="kpiAmbassadors">—</b><small>signed up</small></div>
+      </section>
+
+      <div class="admin-grid">
+        <section class="panel span-2">
+          <div class="panel-head">
+            <div><span class="section-kicker">SIMULATION REPLAY</span><h2>Daily cumulative sign-ups</h2></div>
+            <div class="panel-actions">
+              <button class="btn btn-secondary btn-small" id="animateSim">Replay</button>
+              <button class="btn btn-primary btn-small" id="runSim">Run 7-day simulation</button>
+              <button class="btn btn-secondary btn-small danger" id="resetSim">Reset simulation</button>
+            </div>
+          </div>
+          <div class="chart-legend"><span><i class="lg-q"></i> qualified (2027)</span><span><i class="lg-t"></i> all sign-ups</span><span><i class="lg-target"></i> 500 target</span><span class="chart-flag" id="chartFlag"></span></div>
+          <div class="chart" id="simChart"></div>
+          <div class="sim-insight">
+            <div><b id="simQualified">—</b><span>qualified final-years</span></div>
+            <div><b id="simTotal">—</b><span>total sign-ups</span></div>
+            <div><b>₹2K</b><span>campaign budget</span></div>
+            <p id="simNote"><span class="sim-flag">Simulation</span>Model output from our assumptions, not campaign results. Run the simulation to seed 7 days of generic, flagged rows ending yesterday.</p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><div><span class="section-kicker">REFERRAL ENGINE</span><h2>Leaderboard</h2></div><span class="mini-note" id="boardUpdated">refreshes every 12 s</span></div>
+          <div class="leader-list" id="leaderboard"></div>
+          <p class="panel-foot">Ranked by verified final-year (2027) sign-ups only.</p>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><div><span class="section-kicker">ATTRIBUTION</span><h2>Channel mix</h2></div><span class="mini-note">qualified · all</span></div>
+          <div class="channel-list" id="channels"></div>
+          <div class="budget-call"><span>Day-4 decision cue</span><b id="budgetRecommendation">Collect more data</b></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><div><span class="section-kicker">MESSAGE LAB</span><h2>Class-group copy</h2></div><span class="mini-note" id="copySource">AI writer</span></div>
+          <div class="two-col">
+            <label class="stack-label">Language<select id="lang"><option value="en">English</option><option value="ta">Tamil</option><option value="te">Telugu</option></select></label>
+            <label class="stack-label">Channel<select id="messageChannel"><option>Campus ambassador</option><option>Referral</option><option>Telegram / community</option><option>LinkedIn / Instagram</option></select></label>
+          </div>
+          <div class="two-col">
+            <label class="stack-label">College<input id="msgCollege" maxlength="80" placeholder="e.g. Sample Engineering College" /></label>
+            <label class="stack-label">Ambassador name<input id="msgAmbassador" maxlength="60" placeholder="e.g. Priya" /></label>
+          </div>
+          <label class="stack-label">Tone<select id="messageTone"><option value="direct">Direct</option><option value="peer">Peer-to-peer</option><option value="urgency">24-hour urgency</option></select></label>
+          <button class="btn btn-primary full" id="generate">Generate message</button>
+          <div class="form-error" id="copyError" hidden></div>
+          <textarea id="messageOut" rows="9" placeholder="Generated message will appear here..."></textarea>
+          <div class="two-col"><button class="btn btn-secondary full" id="copyMessage">Copy message</button><button class="btn btn-secondary full" id="waMessage">Open in WhatsApp</button></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><div><span class="section-kicker">FEED</span><h2>Just registered</h2></div><span class="mini-note">newest first</span></div>
+          <div class="feed" id="feed"></div>
+        </section>
+
+        <section class="panel registrations span-2">
+          <div class="panel-head">
+            <div><span class="section-kicker">DATA LAYER</span><h2>Recent sign-ups</h2></div>
+            <div class="panel-actions"><button class="btn btn-secondary btn-small" id="exportCsv">Export CSV</button></div>
+          </div>
+          <div class="table-wrap"><table><thead><tr><th>When</th><th>Name</th><th>College</th><th>Branch</th><th>Year</th><th>Channel</th><th>Referred by</th><th>Qualified</th></tr></thead><tbody id="regTable"></tbody></table></div>
+        </section>
+
+        <section class="panel registrations span-2">
+          <div class="panel-head"><div><span class="section-kicker">AMBASSADORS</span><h2>Ambassador table</h2></div><span class="mini-note">verified = 2027 sign-ups via their link</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Rank</th><th>Name</th><th>College</th><th>Email</th><th>Code</th><th>Verified</th><th>Not 2027</th><th>Last verified sign-up</th></tr></thead><tbody id="ambTable"></tbody></table></div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><div class="brand"><span class="brand-mark">W</span><span>WaveLoop</span></div><div><span>Simulation only · No students contacted</span><a href="index.html">Back to landing page</a></div></div></footer>
+  <script src="admin.js"></script>
+</body>
+</html>
